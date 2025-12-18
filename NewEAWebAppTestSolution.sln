@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewEAWebAppTestProject", "NewEAWebAppTestProject\NewEAWebAppTestProject.csproj", "{8450AADE-5C84-478E-8DDB-F3C4B84E3EDC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EAWebAppFrameWorkClasses", "EAWebAppFrameWorkClasses\EAWebAppFrameWorkClasses.csproj", "{8D55A86D-9821-4F0D-B0C5-AAE777277FC1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8450AADE-5C84-478E-8DDB-F3C4B84E3EDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8450AADE-5C84-478E-8DDB-F3C4B84E3EDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8450AADE-5C84-478E-8DDB-F3C4B84E3EDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8450AADE-5C84-478E-8DDB-F3C4B84E3EDC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D55A86D-9821-4F0D-B0C5-AAE777277FC1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D55A86D-9821-4F0D-B0C5-AAE777277FC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D55A86D-9821-4F0D-B0C5-AAE777277FC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D55A86D-9821-4F0D-B0C5-AAE777277FC1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
