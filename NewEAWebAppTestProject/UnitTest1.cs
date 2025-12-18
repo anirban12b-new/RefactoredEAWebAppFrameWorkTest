@@ -1,10 +1,8 @@
-﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Edge;
-using OpenQA.Selenium.Firefox;
-using WebDriverManager;
-using WebDriverManager.DriverConfigs.Impl;
+﻿
+using EAWebAppFrameWorkClasses.Driver;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using Xunit.Sdk;
 
 namespace NewEAWebAppTestProject;
 
@@ -13,33 +11,11 @@ public class UnitTest1:IDisposable
     private readonly IWebDriver _driver;
 
     public UnitTest1()
-    { 
-        _driver=GetDriverType(BrowserType.Chrome);
-        _driver.Navigate().GoToUrl("http://localhost:8000");
-        _driver.Manage().Window.Maximize();
-        _driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+    {
+        _driver = new DriverFixture().Driver;
     }
 
-    private  enum BrowserType
-    {
-        Chrome, 
-        Firefox, 
-        EdgeChromium
-       }
-    
-    private IWebDriver GetDriverType(BrowserType browserType)
-    {
-        Console.WriteLine(browserType.ToString().ToLowerInvariant());
-        return browserType  switch
-        {
-           BrowserType.Chrome=> new ChromeDriver(),
-           BrowserType.Firefox => new FirefoxDriver(),
-           BrowserType.EdgeChromium => new EdgeDriver(),
-       
-           _ => throw new ArgumentException($"Browser '{browserType}' is not supported.", nameof(browserType))
-        };
-       }
-    [Fact]
+[Fact]
     public void Test1()
     {
         _driver.FindElement(By.LinkText("Product")).Click();
