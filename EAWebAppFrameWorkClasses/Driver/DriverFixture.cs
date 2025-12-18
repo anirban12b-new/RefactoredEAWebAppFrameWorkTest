@@ -5,7 +5,7 @@ using OpenQA.Selenium.Firefox;
 
 namespace EAWebAppFrameWorkClasses.Driver;
 
-public class DriverFixture:IDisposable
+public class DriverFixture
 {
     public  IWebDriver Driver { get; }
     public DriverFixture()
@@ -34,10 +34,5 @@ public class DriverFixture:IDisposable
             _ => throw new ArgumentException($"Browser '{browserType}' is not supported.", nameof(browserType))
         };
     }
-    
-    public void Dispose()
-    {
-        Driver.Quit();
-        Driver.Dispose();
-    }
+   
 }

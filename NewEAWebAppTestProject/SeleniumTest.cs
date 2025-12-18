@@ -6,11 +6,11 @@ using Xunit.Sdk;
 
 namespace NewEAWebAppTestProject;
 
-public class UnitTest1:IDisposable
+public class SeleniumTest:IDisposable
 {
     private readonly IWebDriver _driver;
 
-    public UnitTest1()
+    public SeleniumTest()
     {
         _driver = new DriverFixture().Driver;
     }
