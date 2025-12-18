@@ -14,7 +14,6 @@ public class UnitTest1:IDisposable
 
     public UnitTest1()
     { 
-        
         _driver=GetDriverType(BrowserType.Chrome);
         _driver.Navigate().GoToUrl("http://localhost:8000");
         _driver.Manage().Window.Maximize();
@@ -27,7 +26,6 @@ public class UnitTest1:IDisposable
         Firefox, 
         EdgeChromium
        }
-    
     
     private IWebDriver GetDriverType(BrowserType browserType)
     {
@@ -44,7 +42,6 @@ public class UnitTest1:IDisposable
     [Fact]
     public void Test1()
     {
-        
         _driver.FindElement(By.LinkText("Product")).Click();
         _driver.FindElement(By.LinkText("Create")).Click();
         _driver.FindElement(By.Id("Name")).SendKeys("CorrectTestProduct");
@@ -58,7 +55,6 @@ public class UnitTest1:IDisposable
     [Fact]
     public void Test2()
     {
-  
         _driver.FindElement(By.LinkText("Product")).Click();
         _driver.FindElement(By.LinkText("Create")).Click();
         _driver.FindElement(By.Id("Name")).SendKeys("CorrectSecondTestProduct");
