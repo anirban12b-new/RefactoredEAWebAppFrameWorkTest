@@ -8,13 +8,13 @@ namespace EAWebAppFrameWorkClasses.Driver;
 
 public class DriverFixture:IDriverFixture
 {
-   public IWebDriver Driver { get; }
+    public IWebDriver Driver { get; }
     private readonly TestSettings _testSettings;
     public DriverFixture(TestSettings testSettings)
     {
         _testSettings = testSettings;
         Driver=GetDriverType(_testSettings.BrowserType);
-        Driver.Navigate().GoToUrl(_testSettings.ApplicationUri);
+        if (_testSettings.ApplicationUri != null) Driver.Navigate().GoToUrl(_testSettings.ApplicationUri);
         Driver.Manage().Window.Maximize();
         Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
     }
@@ -37,6 +37,5 @@ public class DriverFixture:IDriverFixture
             _ => throw new ArgumentException($"Browser '{browserType}' is not supported.", nameof(browserType))
         };
     }
-   
 }
 
