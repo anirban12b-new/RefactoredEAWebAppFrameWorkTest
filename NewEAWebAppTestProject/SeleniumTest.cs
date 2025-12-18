@@ -1,49 +1,61 @@
 ﻿
+using EAWebAppFrameWorkClasses.Config;
 using EAWebAppFrameWorkClasses.Driver;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
-using Xunit.Sdk;
+
 
 namespace NewEAWebAppTestProject;
 
 public class SeleniumTest:IDisposable
 {
-    private readonly IWebDriver _driver;
+    private  readonly IDriverFixture _driverFixture;
 
     public SeleniumTest()
     {
-        _driver = new DriverFixture().Driver;
+        var testSettings = new TestSettings
+        {
+           BrowserType = DriverFixture.BrowserType.Chrome,
+        ApplicationUri = new Uri("http://localhost:8000/"),
+        Timeout = 10,
+          };
+        _driverFixture = new DriverFixture(testSettings);
+        
+        
+            _driverFixture.Driver.Navigate().GoToUrl(testSettings.ApplicationUri);
+            _driverFixture.Driver.Manage().Window.Maximize();
+            _driverFixture.Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(testSettings.Timeout ?? 10);
     }
 
-[Fact]
+    [Fact]
     public void Test1()
     {
-        _driver.FindElement(By.LinkText("Product")).Click();
-        _driver.FindElement(By.LinkText("Create")).Click();
-        _driver.FindElement(By.Id("Name")).SendKeys("CorrectTestProduct");
-        _driver.FindElement(By.Id("Description")).SendKeys("Simple Framework Code");
-        _driver.FindElement(By.Id("Price")).SendKeys("5000");
-        _driver.FindElement(By.Id("ProductType")).Click();
-        SelectElement productName = new SelectElement(_driver.FindElement(By.Id("ProductType")));
+        _driverFixture.Driver.FindElement(By.LinkText("Product")).Click();
+        _driverFixture.Driver.FindElement(By.LinkText("Create")).Click();
+        _driverFixture.Driver.FindElement(By.Id("Name")).SendKeys("CorrectTestProduct");
+        _driverFixture.Driver.FindElement(By.Id("Description")).SendKeys("Simple Framework Code");
+        _driverFixture.Driver.FindElement(By.Id("Price")).SendKeys("5000");
+        _driverFixture.Driver.FindElement(By.Id("ProductType")).Click();
+        SelectElement productName = new SelectElement(_driverFixture.Driver.FindElement(By.Id("ProductType")));
         productName.SelectByText("EXTERNAL");
-        _driver.FindElement(By.Id("Create")).Click();
+        _driverFixture.Driver.FindElement(By.Id("Create")).Click();
     }
     [Fact]
     public void Test2()
     {
-        _driver.FindElement(By.LinkText("Product")).Click();
-        _driver.FindElement(By.LinkText("Create")).Click();
-        _driver.FindElement(By.Id("Name")).SendKeys("CorrectSecondTestProduct");
-        _driver.FindElement(By.Id("Description")).SendKeys("Simple Framework Code For Second Test");
-        _driver.FindElement(By.Id("Price")).SendKeys("9000");
-        _driver.FindElement(By.Id("ProductType")).Click();
-        SelectElement productName = new SelectElement(_driver.FindElement(By.Id("ProductType")));
+        _driverFixture.Driver.FindElement(By.LinkText("Product")).Click();
+        _driverFixture.Driver.FindElement(By.LinkText("Create")).Click();
+        _driverFixture.Driver.FindElement(By.Id("Name")).SendKeys("CorrectSecondTestProduct");
+        _driverFixture.Driver.FindElement(By.Id("Description")).SendKeys("Simple Framework Code For Second Test");
+        _driverFixture.Driver.FindElement(By.Id("Price")).SendKeys("9000");
+        _driverFixture.Driver.FindElement(By.Id("ProductType")).Click();
+        SelectElement productName = new SelectElement(_driverFixture.Driver.FindElement(By.Id("ProductType")));
         productName.SelectByText("CPU");
-        _driver.FindElement(By.Id("Create")).Click();
+        _driverFixture.Driver.FindElement(By.Id("Create")).Click();
     } 
     public void Dispose()
     {
-        _driver.Quit();
-        _driver.Dispose();
+        _driverFixture.Driver.Quit();
+        _driverFixture.Driver.Dispose();
     }
 }

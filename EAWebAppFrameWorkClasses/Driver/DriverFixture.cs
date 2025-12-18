@@ -1,3 +1,4 @@
+using EAWebAppFrameWorkClasses.Config;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Edge;
@@ -5,13 +6,15 @@ using OpenQA.Selenium.Firefox;
 
 namespace EAWebAppFrameWorkClasses.Driver;
 
-public class DriverFixture
+public class DriverFixture:IDriverFixture
 {
-    public  IWebDriver Driver { get; }
-    public DriverFixture()
+   public IWebDriver Driver { get; }
+    private readonly TestSettings _testSettings;
+    public DriverFixture(TestSettings testSettings)
     {
-        Driver=GetDriverType(BrowserType.Chrome);
-        Driver.Navigate().GoToUrl("http://localhost:8000");
+        _testSettings = testSettings;
+        Driver=GetDriverType(_testSettings.BrowserType);
+        Driver.Navigate().GoToUrl(_testSettings.ApplicationUri);
         Driver.Manage().Window.Maximize();
         Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
     }
@@ -36,3 +39,4 @@ public class DriverFixture
     }
    
 }
+
