@@ -12,4 +12,6 @@ public class HomePage
         
     }
     private IWebElement  LnkHome => _driverFixture.Driver.FindElement(By.LinkText("Home"));
+    private IWebElement  LnkPrivacy => _driverFixture.Driver.FindElement(By.LinkText("Privacy"));
+    private IWebElement  LnkProduct => _driverFixture.Driver.FindElement(By.LinkText("Product"));
 }
