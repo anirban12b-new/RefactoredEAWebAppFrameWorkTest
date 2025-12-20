@@ -3,10 +3,11 @@ using OpenQA.Selenium;
 
 namespace NewEAWebAppTestProject.Pages;
 
-public class HomePage
+public class HomePage()
+
 {
-    private readonly IDriverFixture _driverFixture;
-    public HomePage(IDriverFixture driverFixture)
+    private readonly IDriverFixture?  _driverFixture;
+    public HomePage(IDriverFixture driverFixture) : this()
     {
         _driverFixture = driverFixture;
         
@@ -14,4 +15,9 @@ public class HomePage
     private IWebElement  LnkHome => _driverFixture.Driver.FindElement(By.LinkText("Home"));
     private IWebElement  LnkPrivacy => _driverFixture.Driver.FindElement(By.LinkText("Privacy"));
     private IWebElement  LnkProduct => _driverFixture.Driver.FindElement(By.LinkText("Product"));
+    
+    public void ClickLnkProduct() => LnkProduct.Click();
+    
+ 
+    
 }

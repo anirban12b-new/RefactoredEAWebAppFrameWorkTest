@@ -1,7 +1,7 @@
 ﻿using EAWebAppFrameWorkClasses.Config;
 using EAWebAppFrameWorkClasses.Driver;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Support.UI;
+using NewEAWebAppTestProject.Pages;
+using WebDriverManager.DriverConfigs.Impl;
 
 namespace NewEAWebAppTestProject;
 
@@ -13,7 +13,7 @@ public class SeleniumTest : IDisposable
     {
         var testSettings = new TestSettings
         {
-            BrowserType = DriverFixture.BrowserType.Chrome,
+            BrowserType = DriverFixture.BrowserType.EdgeChromium,
             ApplicationUri = new Uri("http://localhost:8000/"),
             Timeout = 10
         };
@@ -34,28 +34,19 @@ public class SeleniumTest : IDisposable
     [Fact]
     public void Test1()
     {
-        _driverFixture.Driver.FindElement(By.LinkText("Product")).Click();
-        _driverFixture.Driver.FindElement(By.LinkText("Create")).Click();
-        _driverFixture.Driver.FindElement(By.Id("Name")).SendKeys("CorrectTestProduct");
-        _driverFixture.Driver.FindElement(By.Id("Description")).SendKeys("Simple Framework Code");
-        _driverFixture.Driver.FindElement(By.Id("Price")).SendKeys("5000");
-        _driverFixture.Driver.FindElement(By.Id("ProductType")).Click();
-        var productName = new SelectElement(_driverFixture.Driver.FindElement(By.Id("ProductType")));
-        productName.SelectByText("EXTERNAL");
-        _driverFixture.Driver.FindElement(By.Id("Create")).Click();
-    }
+        var HomePage = new HomePage(_driverFixture);
+        var ProductPage = new ProductPage(_driverFixture);
+        HomePage.ClickLnkProduct();
+        ProductPage.CreateProduct("TestProduct1", "TestDescription1", 100, "CPU");
+       }
 
     [Fact]
     public void Test2()
     {
-        _driverFixture.Driver.FindElement(By.LinkText("Product")).Click();
-        _driverFixture.Driver.FindElement(By.LinkText("Create")).Click();
-        _driverFixture.Driver.FindElement(By.Id("Name")).SendKeys("CorrectSecondTestProduct");
-        _driverFixture.Driver.FindElement(By.Id("Description")).SendKeys("Simple Framework Code For Second Test");
-        _driverFixture.Driver.FindElement(By.Id("Price")).SendKeys("9000");
-        _driverFixture.Driver.FindElement(By.Id("ProductType")).Click();
-        var productName = new SelectElement(_driverFixture.Driver.FindElement(By.Id("ProductType")));
-        productName.SelectByText("CPU");
-        _driverFixture.Driver.FindElement(By.Id("Create")).Click();
+        var HomePage = new HomePage(_driverFixture);
+        var ProductPage = new ProductPage(_driverFixture);
+        HomePage.ClickLnkProduct();
+        ProductPage.CreateProduct("TestProduct2", "TestDescription2", 200, "MONITOR");
+        
     }
 }
