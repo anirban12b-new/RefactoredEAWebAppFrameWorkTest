@@ -1,7 +1,7 @@
 ﻿using EAWebAppFrameWorkClasses.Config;
 using EAWebAppFrameWorkClasses.Driver;
 using NewEAWebAppTestProject.Pages;
-using WebDriverManager.DriverConfigs.Impl;
+
 
 namespace NewEAWebAppTestProject;
 
@@ -34,19 +34,19 @@ public class SeleniumTest : IDisposable
     [Fact]
     public void Test1()
     {
-        var HomePage = new HomePage(_driverFixture);
-        var ProductPage = new ProductPage(_driverFixture);
-        HomePage.ClickLnkProduct();
-        ProductPage.CreateProduct("TestProduct1", "TestDescription1", 100, "CPU");
+        var homePage = new HomePage(_driverFixture);
+        var productPage = new ProductPage(_driverFixture);
+        homePage.ClickLnkProduct();
+        productPage.CreateProduct("TestProduct1", "TestDescription1", 100, "CPU");
        }
 
     [Fact]
     public void Test2()
     {
-        var HomePage = new HomePage(_driverFixture);
-        var ProductPage = new ProductPage(_driverFixture);
-        HomePage.ClickLnkProduct();
-        ProductPage.CreateProduct("TestProduct2", "TestDescription2", 200, "MONITOR");
+        var homePage = new HomePage(_driverFixture);
+        var productPage = new ProductPage(_driverFixture);
+        homePage.ClickLnkProduct();
+        productPage.CreateProduct("TestProduct2", "TestDescription2", 200, "MONITOR");
         
     }
 }

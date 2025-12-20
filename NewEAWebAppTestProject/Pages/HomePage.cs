@@ -12,11 +12,10 @@ public class HomePage()
         _driverFixture = driverFixture;
         
     }
-    private IWebElement  LnkHome => _driverFixture.Driver.FindElement(By.LinkText("Home"));
-    private IWebElement  LnkPrivacy => _driverFixture.Driver.FindElement(By.LinkText("Privacy"));
-    private IWebElement  LnkProduct => _driverFixture.Driver.FindElement(By.LinkText("Product"));
+    private IWebElement?  LnkHome => _driverFixture!.Driver.FindElement(By.LinkText("Home"));
+    private IWebElement?  LnkProduct => _driverFixture!.Driver.FindElement(By.LinkText("Product"));
     
-    public void ClickLnkProduct() => LnkProduct.Click();
+    public void ClickLnkProduct() => LnkProduct!.Click();
     
  
     
