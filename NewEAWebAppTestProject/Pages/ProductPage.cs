@@ -4,24 +4,16 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI; 
 namespace NewEAWebAppTestProject.Pages;
 
-public class ProductPage
+public class ProductPage(IDriverFixture driverFixture)
 {
-    private readonly IDriverFixture _driverFixture;
+    private IWebElement lnkCreateProduct => driverFixture.Driver.FindElement(By.LinkText("Create"));
+    private IWebElement prdName => driverFixture.Driver.FindElement(By.Id("Name"));
+    private IWebElement txtDescription => driverFixture.Driver.FindElement(By.Id("Description"));
+    private IWebElement txtPrice => driverFixture.Driver.FindElement(By.Id("Price"));
+    private IWebElement selectProductType => driverFixture.Driver.FindElement(By.Id("ProductType"));
+    private IWebElement btnCreate => driverFixture.Driver.FindElement(By.Id("Create"));
 
-    public ProductPage(IDriverFixture driverFixture)
-    {
-        _driverFixture = driverFixture;
-        
-    }
-
-    private IWebElement lnkCreateProduct => _driverFixture.Driver.FindElement(By.LinkText("Create"));
-    private IWebElement prdName => _driverFixture.Driver.FindElement(By.Id("Name"));
-    private IWebElement txtDescription => _driverFixture.Driver.FindElement(By.Id("Description"));
-    private IWebElement txtPrice => _driverFixture.Driver.FindElement(By.Id("Price"));
-    private IWebElement selectProductType => _driverFixture.Driver.FindElement(By.Id("ProductType"));
-    private IWebElement btnCreate => _driverFixture.Driver.FindElement(By.Id("Create"));
-
-    private IWebElement tblList => _driverFixture.Driver.FindElement(By.ClassName("table"));
+    HomePage HomePage { get; } = new HomePage(driverFixture);
 
     public void CreateProduct(string name, string description, int price, string productType)
     {
@@ -35,4 +27,12 @@ public class ProductPage
         
       btnCreate.Click();
     }
+
+    public void SeeProductDetails()
+    {
+        driverFixture.Driver.FindElement(By.XPath($"//a[text()='Details']")).Click();
+        driverFixture.Driver.FindElement(By.XPath($"//a[text()='Back to List']")).Click();
+      
+    }
+    
   }

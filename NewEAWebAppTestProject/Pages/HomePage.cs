@@ -17,6 +17,10 @@ public class HomePage()
     
     public void ClickLnkProduct() => LnkProduct!.Click();
     
+    
+    
+    
+    
  
     
 }
